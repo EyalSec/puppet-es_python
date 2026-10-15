@@ -1,0 +1,25 @@
+{
+  "name": "eyalsec-es_python",
+  "version": "1.0.0",
+  "author": "EyalSec",
+  "summary": "Install es-python, the EyalSec Python runtime, on your Linux nodes, each reporting as its own machine on your dashboard.",
+  "license": "MIT",
+  "source": "https://github.com/EyalSec/puppet-es_python",
+  "project_page": "https://github.com/EyalSec/puppet-es_python",
+  "issues_url": "https://github.com/EyalSec/puppet-es_python/issues",
+  "dependencies": [],
+  "operatingsystem_support": [
+    {"operatingsystem": "Ubuntu", "operatingsystemrelease": ["20.04", "22.04", "24.04"]},
+    {"operatingsystem": "Debian", "operatingsystemrelease": ["11", "12", "13"]},
+    {"operatingsystem": "RedHat", "operatingsystemrelease": ["9"]},
+    {"operatingsystem": "Rocky", "operatingsystemrelease": ["9"]},
+    {"operatingsystem": "AlmaLinux", "operatingsystemrelease": ["9"]},
+    {"operatingsystem": "Amazon", "operatingsystemrelease": ["2023"]},
+    {"operatingsystem": "Fedora"},
+    {"operatingsystem": "Archlinux"}
+  ],
+  "requirements": [
+    {"name": "puppet", "version_requirement": ">= 7.0.0 < 9.0.0"}
+  ],
+  "tags": ["security", "python", "appsec", "eyalsec", "es-python"]
+}

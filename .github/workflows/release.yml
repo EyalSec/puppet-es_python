@@ -1,0 +1,24 @@
+# Publishes the module to the Puppet Forge. Run it from the Actions tab, or:
+#   gh workflow run release -R EyalSec/puppet-es_python --ref v1.0.0
+# Needs the repository secret FORGE_API_KEY (forge.puppet.com > your profile > API keys).
+name: release
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  forge:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check the ref is the tag metadata.json names
+        run: |
+          v="$(sed -n 's/.*"version": *"\([^"]*\)".*/\1/p' metadata.json | head -n 1)"
+          test "v$v" = "$GITHUB_REF_NAME" || { echo "run this on the tag v$v"; exit 1; }
+      - name: Build and upload
+        env:
+          FORGE_API_KEY: ${{ secrets.FORGE_API_KEY }}
+        run: |
+          pkg="$(scripts/build.sh)"
+          curl -fsS -X POST https://forgeapi.puppet.com/v3/releases \
+            -H "Authorization: Bearer $FORGE_API_KEY" -F "file=@$pkg"
